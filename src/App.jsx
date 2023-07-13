@@ -19,157 +19,157 @@ const utils = ethers.utils
 
 const jsonFetch = url => fetch(url).then(res => res.json())
 
-const add = require('./addresses.json')
-add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
-add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
-add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
-add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
-add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441" //v1
-add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11" //v3
-add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
-add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
-add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
-add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5"
-add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
-add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
-add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+const add = require('./addresses-tai.json')
+// add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
+// add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+// add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
+// add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
+// add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441" //v1
+// add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11" //v3
+// add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
+// add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
+// add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+// add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5"
+// add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
+// add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
+// add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 
 //add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 
-add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
-add["GOV_WALLET_1"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
-add["GOV_WALLET_2"] = "0xC818Ae5f27B76b4902468C6B02Fd7a089F12c07b"
-add["GOV_WALLET_3"] = "0xbfDD0E744723192f7880493b66501253C34e1241"
-add["RISK_MULTISIG"] = "0xd98ef20520048a35EdA9A202137847A62120d2d9"
-add["RISK_001_WALLET"] = "0xb386Bc4e8bAE87c3F67ae94Da36F385C100a370a"
-add["RWF_MULTISIG"] = "0x9e1585d9CA64243CE43D42f7dD7333190F66Ca09"
-add["GRO_MULTISIG"] = "0x7800C137A645c07132886539217ce192b9F0528e"
-add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
-add["CP_MULTISIG_2"] = "0xDCAF2C84e1154c8DdD3203880e5db965bfF09B60"
-add["SES_AUDIT_MULTISIG"] = "0x87AcDD9208f73bFc9207e1f6F0fDE906bcA95cc6"
-add["SES_PERMANENT_TEAM_MULTISIG"] = "0xb5eB779cE300024EDB3dF9b6C007E312584f6F4f"
-add["SES_INCUBATION_PROGRAM_MULTISIG"] = "0x7c09Ff9b59BAAebfd721cbDA3676826aA6d7BaE8"
-add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2"
-add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
-add["ORA_MULTISIG"] = "0x2d09B7b95f3F312ba6dDfB77bA6971786c5b50Cf"
-add["ORA_ER_MULTISIG"] = "0x53CCAA8E3beF14254041500aCC3f1D4edb5B6D24"
-add["COM_MULTISIG"] = "0x1eE3ECa7aEF17D1e74eD7C447CcBA61aC76aDbA9"
-add["COM_ER_MULTISIG"] = "0x99E1696A680c0D9f426Be20400E468089E7FDB0f"
-add["DAIF_WALLET"] = "0x34D8d61050Ef9D2B48Ab00e6dc8A8CA6581c5d63"
-add["DAIF_EF_WALLET"] = "0x5F5c328732c9E52DfCb81067b8bA56459b33921f"
-add["SNE_WALLET"] = "0x6D348f18c88D45243705D4fdEeB6538c6a9191F1"
-add["SH_WALLET"] = "0x955993Df48b0458A01cfB5fd7DF5F5DCa6443550"
-add["SH_MULTISIG"] = "0xc657aC882Fb2D6CcF521801da39e910F8519508d"
-add["IN_WALLET"] = "0x7327Aed0Ddf75391098e8753512D8aEc8D740a1F"
-add["SAS_WALLET"] = "0xb1f950a51516a697E103aaa69E152d839182f6Fe"
-add["IS_WALLET"] = "0xd1F2eEf8576736C1EbA36920B957cd2aF07280F4"
-add["DECO_WALLET"] = "0xF482D1031E5b172D42B2DAA1b6e5Cbf6519596f7"
-// MakerDAO Shop
-add["TECH_001_WALLET"] = "0x2dC0420A736D1F40893B9481D8968E4D7424bC0B"
-add["ORA_001_GAS"] = "0x2B6180b413511ce6e3DA967Ec503b2Cc19B78Db6"
-add["ORA_001_GAS_EMERGENCY"] = "0x1A5B692029b157df517b7d21a32c8490b8692b0f"
-add["DUX_001_WALLET"] = "0x5A994D8428CCEbCC153863CCdA9D2Be6352f89ad"
-add["SF_001_WALLET"] = "0xf737C76D2B358619f7ef696cf3F94548fEcec379"
-add["RWF_001_WALLET"] = "0x96d7b01Cc25B141520C717fa369844d34FF116ec"
-add["SF_001_VEST_01"] = "0xBC7fd5AA2016C3e2C8F0dBf4e919485C6BBb59e2"
-add["SF_001_VEST_02"] = "0xCC81578d163A04ea8d2EaE6904d0C8E61A84E1Bb"
-add["CES_001_WALLET"] = "0x25307aB59Cd5d8b4E2C01218262Ddf6a89Ff86da"
-add["GELATO_WALLET_OLD"] = "0x926c21602FeC84d6d0fA6450b40Edba595B5c6e4"
-add["GELATO_WALLET"] = "0x478c7Ce3e1df09130f8D65a23AD80e05b352af62"
-add["AMBASSADOR_WALLET"] = "0xF411d823a48D18B32e608274Df16a9957fE33E45"
-add["EVENTS_WALLET"] = "0x3D274fbAc29C92D2F624483495C0113B44dBE7d2"
-add["KEEP3R_MANAGER"] = "0xc6A048550C9553F8Ac20fbdeB06f114c27ECcabb"
-add["CHAINLINK_AUTOMATION"] = "0x5E9dfc5fe95A0754084fB235D58752274314924b"
-add["SF_IC_WALLET_0"] = "0x31C01e90Edcf8602C1A18B2aE4e5A72D8DCE76bD"
-add["SF_IC_WALLET_1"] = "0x12b19C5857CF92AaE5e5e5ADc6350e25e4C902e9"
+// add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
+// add["GOV_WALLET_1"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
+// add["GOV_WALLET_2"] = "0xC818Ae5f27B76b4902468C6B02Fd7a089F12c07b"
+// add["GOV_WALLET_3"] = "0xbfDD0E744723192f7880493b66501253C34e1241"
+// add["RISK_MULTISIG"] = "0xd98ef20520048a35EdA9A202137847A62120d2d9"
+// add["RISK_001_WALLET"] = "0xb386Bc4e8bAE87c3F67ae94Da36F385C100a370a"
+// add["RWF_MULTISIG"] = "0x9e1585d9CA64243CE43D42f7dD7333190F66Ca09"
+// add["GRO_MULTISIG"] = "0x7800C137A645c07132886539217ce192b9F0528e"
+// add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
+// add["CP_MULTISIG_2"] = "0xDCAF2C84e1154c8DdD3203880e5db965bfF09B60"
+// add["SES_AUDIT_MULTISIG"] = "0x87AcDD9208f73bFc9207e1f6F0fDE906bcA95cc6"
+// add["SES_PERMANENT_TEAM_MULTISIG"] = "0xb5eB779cE300024EDB3dF9b6C007E312584f6F4f"
+// add["SES_INCUBATION_PROGRAM_MULTISIG"] = "0x7c09Ff9b59BAAebfd721cbDA3676826aA6d7BaE8"
+// add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2"
+// add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
+// add["ORA_MULTISIG"] = "0x2d09B7b95f3F312ba6dDfB77bA6971786c5b50Cf"
+// add["ORA_ER_MULTISIG"] = "0x53CCAA8E3beF14254041500aCC3f1D4edb5B6D24"
+// add["COM_MULTISIG"] = "0x1eE3ECa7aEF17D1e74eD7C447CcBA61aC76aDbA9"
+// add["COM_ER_MULTISIG"] = "0x99E1696A680c0D9f426Be20400E468089E7FDB0f"
+// add["DAIF_WALLET"] = "0x34D8d61050Ef9D2B48Ab00e6dc8A8CA6581c5d63"
+// add["DAIF_EF_WALLET"] = "0x5F5c328732c9E52DfCb81067b8bA56459b33921f"
+// add["SNE_WALLET"] = "0x6D348f18c88D45243705D4fdEeB6538c6a9191F1"
+// add["SH_WALLET"] = "0x955993Df48b0458A01cfB5fd7DF5F5DCa6443550"
+// add["SH_MULTISIG"] = "0xc657aC882Fb2D6CcF521801da39e910F8519508d"
+// add["IN_WALLET"] = "0x7327Aed0Ddf75391098e8753512D8aEc8D740a1F"
+// add["SAS_WALLET"] = "0xb1f950a51516a697E103aaa69E152d839182f6Fe"
+// add["IS_WALLET"] = "0xd1F2eEf8576736C1EbA36920B957cd2aF07280F4"
+// add["DECO_WALLET"] = "0xF482D1031E5b172D42B2DAA1b6e5Cbf6519596f7"
+// // MakerDAO Shop
+// add["TECH_001_WALLET"] = "0x2dC0420A736D1F40893B9481D8968E4D7424bC0B"
+// add["ORA_001_GAS"] = "0x2B6180b413511ce6e3DA967Ec503b2Cc19B78Db6"
+// add["ORA_001_GAS_EMERGENCY"] = "0x1A5B692029b157df517b7d21a32c8490b8692b0f"
+// add["DUX_001_WALLET"] = "0x5A994D8428CCEbCC153863CCdA9D2Be6352f89ad"
+// add["SF_001_WALLET"] = "0xf737C76D2B358619f7ef696cf3F94548fEcec379"
+// add["RWF_001_WALLET"] = "0x96d7b01Cc25B141520C717fa369844d34FF116ec"
+// add["SF_001_VEST_01"] = "0xBC7fd5AA2016C3e2C8F0dBf4e919485C6BBb59e2"
+// add["SF_001_VEST_02"] = "0xCC81578d163A04ea8d2EaE6904d0C8E61A84E1Bb"
+// add["CES_001_WALLET"] = "0x25307aB59Cd5d8b4E2C01218262Ddf6a89Ff86da"
+// add["GELATO_WALLET_OLD"] = "0x926c21602FeC84d6d0fA6450b40Edba595B5c6e4"
+// add["GELATO_WALLET"] = "0x478c7Ce3e1df09130f8D65a23AD80e05b352af62"
+// add["AMBASSADOR_WALLET"] = "0xF411d823a48D18B32e608274Df16a9957fE33E45"
+// add["EVENTS_WALLET"] = "0x3D274fbAc29C92D2F624483495C0113B44dBE7d2"
+// add["KEEP3R_MANAGER"] = "0xc6A048550C9553F8Ac20fbdeB06f114c27ECcabb"
+// add["CHAINLINK_AUTOMATION"] = "0x5E9dfc5fe95A0754084fB235D58752274314924b"
+// add["SF_IC_WALLET_0"] = "0x31C01e90Edcf8602C1A18B2aE4e5A72D8DCE76bD"
+// add["SF_IC_WALLET_1"] = "0x12b19C5857CF92AaE5e5e5ADc6350e25e4C902e9"
 
-add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
-add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
-//add["MEDIAN_USDC
-add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
-//add["MEDIAN_TUSD
-add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
-add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
-add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
-add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
-//add["MEDIAN_PAXUSD
-add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
-add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
-add["MEDIAN_LINK"] = "0xbAd4212d73561B240f10C56F27e6D9608963f17b"
-add["MEDIAN_BAL"] = "0x1D36d59e5a22cB51B30Bb6fA73b62D73f4A11745"
-add["MEDIAN_YFI"] = "0x89AC26C0aFCB28EC55B6CD2F6b7DAD867Fa24639"
-//add["MEDIAN_GUSD
-add["MEDIAN_UNI"] = "0x52f761908cC27B4D77AD7A329463cf08baf62153"
-add["MEDIAN_RENBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
-add["MEDIAN_AAVE"] = "0xe62872DFEbd323b03D27946f8e2491B454a69811"
-add["MEDIAN_UNIV2DAIETH"] = "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11"
-add["MEDIAN_UNIV2WBTCETH"] = "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940"
-add["MEDIAN_UNIV2USDCETH"] = "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc"
-add["MEDIAN_UNIV2DAIUSDC"] = "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5"
-add["MEDIAN_UNIV2LINKETH"] = "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974"
-add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
-add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
-add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
-add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
-add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
-add["MEDIAN_RETH"] = "0xF86360f0127f8A441Cfca332c75992D1C692b3D1"
-add["MEDIAN_GNO"] = "0x31BFA908637C29707e155Cfac3a50C9823bF8723"
+// add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
+// add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
+// //add["MEDIAN_USDC
+// add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
+// //add["MEDIAN_TUSD
+// add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
+// add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
+// add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
+// add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
+// //add["MEDIAN_PAXUSD
+// add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
+// add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
+// add["MEDIAN_LINK"] = "0xbAd4212d73561B240f10C56F27e6D9608963f17b"
+// add["MEDIAN_BAL"] = "0x1D36d59e5a22cB51B30Bb6fA73b62D73f4A11745"
+// add["MEDIAN_YFI"] = "0x89AC26C0aFCB28EC55B6CD2F6b7DAD867Fa24639"
+// //add["MEDIAN_GUSD
+// add["MEDIAN_UNI"] = "0x52f761908cC27B4D77AD7A329463cf08baf62153"
+// add["MEDIAN_RENBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
+// add["MEDIAN_AAVE"] = "0xe62872DFEbd323b03D27946f8e2491B454a69811"
+// add["MEDIAN_UNIV2DAIETH"] = "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11"
+// add["MEDIAN_UNIV2WBTCETH"] = "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940"
+// add["MEDIAN_UNIV2USDCETH"] = "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc"
+// add["MEDIAN_UNIV2DAIUSDC"] = "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5"
+// add["MEDIAN_UNIV2LINKETH"] = "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974"
+// add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
+// add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
+// add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
+// add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
+// add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
+// add["MEDIAN_RETH"] = "0xF86360f0127f8A441Cfca332c75992D1C692b3D1"
+// add["MEDIAN_GNO"] = "0x31BFA908637C29707e155Cfac3a50C9823bF8723"
 
-add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
-add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
-add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
-add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
-add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
+// add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
+// add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
+// add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
+// add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
+// add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
 
-add["AAVE_D3M_PLAN"] = "0x5846Aee09298f8F3aB5D837d540232d19e5d5813"
-add["AAVE_D3M_POOL"] = "0x66aE0574Eb28B92c82569b293B856BB99f80F040"
-add["AAVE_D3M_ORACLE"] = "0x634051fbA31829E245C616e79E289f89c8B851c2"
-//add["AAVE_DAI_STABLE_DEBT       = 0x778A13D3eeb110A4f7bb6529F99c000119a08E92"
-//add["AAVE_DAI_VARIABLE_DEBT     = 0x6C3c78838c761c6Ac7bE9F59fe808ea2A6E4379d"
-add["AAVE_DAI_INTEREST_STRATEGY"] = "0xfffE32106A68aA3eD39CcCE673B646423EEaB62a"
-add["MCD_JOIN_DIRECT_AAVEV2_DAI"] = "0xa13c0c8eb109f5a13c6c90fc26afb23beb3fb04a"
-add["MCD_CLIP_CALC_DIRECT_AAVEV2_DAI"] = "0x786dc9b69abea503fd101a2a9fa95bce82c20d0a"
-add["MCD_CLIP_DIRECT_AAVEV2_DAI"] = "0xa93b98e57dde14a3e301f20933d59dc19bf8212e"
+// add["AAVE_D3M_PLAN"] = "0x5846Aee09298f8F3aB5D837d540232d19e5d5813"
+// add["AAVE_D3M_POOL"] = "0x66aE0574Eb28B92c82569b293B856BB99f80F040"
+// add["AAVE_D3M_ORACLE"] = "0x634051fbA31829E245C616e79E289f89c8B851c2"
+// //add["AAVE_DAI_STABLE_DEBT       = 0x778A13D3eeb110A4f7bb6529F99c000119a08E92"
+// //add["AAVE_DAI_VARIABLE_DEBT     = 0x6C3c78838c761c6Ac7bE9F59fe808ea2A6E4379d"
+// add["AAVE_DAI_INTEREST_STRATEGY"] = "0xfffE32106A68aA3eD39CcCE673B646423EEaB62a"
+// add["MCD_JOIN_DIRECT_AAVEV2_DAI"] = "0xa13c0c8eb109f5a13c6c90fc26afb23beb3fb04a"
+// add["MCD_CLIP_CALC_DIRECT_AAVEV2_DAI"] = "0x786dc9b69abea503fd101a2a9fa95bce82c20d0a"
+// add["MCD_CLIP_DIRECT_AAVEV2_DAI"] = "0xa93b98e57dde14a3e301f20933d59dc19bf8212e"
 
-//PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
-add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
+// //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
+// add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
-add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
+// add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
 
-add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
+// add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 
-add["RWA009_A_INPUT_CONDUIT"] = add["RWA009_A_OUTPUT_CONDUIT"] // NOTE RWA009 has no input conduit, explicity set to 0 below
-add["RWA014_A_INPUT_CONDUIT"] = add["RWA014_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
-add["RWA015_A_INPUT_CONDUIT"] = add["RWA015_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
+// add["RWA009_A_INPUT_CONDUIT"] = add["RWA009_A_OUTPUT_CONDUIT"] // NOTE RWA009 has no input conduit, explicity set to 0 below
+// add["RWA014_A_INPUT_CONDUIT"] = add["RWA014_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
+// add["RWA015_A_INPUT_CONDUIT"] = add["RWA015_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
 
-// Teleport
-add["TELEPORT_JOIN"] = "0x41Ca7a7Aa2Be78Cf7CB80C0F4a9bdfBC96e81815"
-add["ORACLE_AUTH"] = "0x324a895625E7AE38Fc7A6ae91a71e7E937Caa7e6"
-add["ROUTER"] = "0xeEf8B35eD538b6Ef7DbA82236377aDE4204e5115"
-add["LINEAR_FEE"] = "0xA7C088AAD64512Eff242901E33a516f2381b8823"
-add["TELEPORT_GATEWAY_OPT"] = "0x920347f49a9dbe50865EB6161C3B2774AC046A7F"
-add["TELEPORT_L2_GATEWAY_OPT"] = "0x18d2CF2296c5b29343755E6B7e37679818913f88"
-add["MESSENGER_OPT"] = "0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1"
-add["TELEPORT_GATEWAY_ARB"] = "0x22218359E78bC34E532B653198894B639AC3ed72"
-add["TELEPORT_L2_GATEWAY_ARB"] = "0x5dBaf6F2bEDebd414F8d78d13499222347e59D5E"
-add["INBOX_ARB"] = "0x4Dbd4fc535Ac27206064B68FfCf827b0A60BAB3f"
+// // Teleport
+// add["TELEPORT_JOIN"] = "0x41Ca7a7Aa2Be78Cf7CB80C0F4a9bdfBC96e81815"
+// add["ORACLE_AUTH"] = "0x324a895625E7AE38Fc7A6ae91a71e7E937Caa7e6"
+// add["ROUTER"] = "0xeEf8B35eD538b6Ef7DbA82236377aDE4204e5115"
+// add["LINEAR_FEE"] = "0xA7C088AAD64512Eff242901E33a516f2381b8823"
+// add["TELEPORT_GATEWAY_OPT"] = "0x920347f49a9dbe50865EB6161C3B2774AC046A7F"
+// add["TELEPORT_L2_GATEWAY_OPT"] = "0x18d2CF2296c5b29343755E6B7e37679818913f88"
+// add["MESSENGER_OPT"] = "0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1"
+// add["TELEPORT_GATEWAY_ARB"] = "0x22218359E78bC34E532B653198894B639AC3ed72"
+// add["TELEPORT_L2_GATEWAY_ARB"] = "0x5dBaf6F2bEDebd414F8d78d13499222347e59D5E"
+// add["INBOX_ARB"] = "0x4Dbd4fc535Ac27206064B68FfCf827b0A60BAB3f"
 
-add["DOMAIN_ETH"] = "ETH-MAIN-A"
-add["DOMAIN_OPT"] = "OPT-MAIN-A"
-add["DOMAIN_ARB"] = "ARB-ONE-A"
+// add["DOMAIN_ETH"] = "ETH-MAIN-A"
+// add["DOMAIN_OPT"] = "OPT-MAIN-A"
+// add["DOMAIN_ARB"] = "ARB-ONE-A"
 
-//  d3m comp ILK = "DIRECT-COMPV2-DAI";
-add["D3M_HUB"] = "0x12F36cdEA3A28C35aC8C6Cc71D9265c17C74A27F"
-add["D3M_MOM"] = "0x1AB3145E281c01a1597c8c62F9f060E8e3E02fAB"
-add["D3M_MOM_LEGACY"] = add["DIRECT_MOM_LEGACY"]
-add["D3M_COMPOUND_POOL"] = "0x621fE4Fde2617ea8FFadE08D0FF5A862aD287EC2"
-add["D3M_COMPOUND_PLAN"] = "0xD0eA20f9f9e64A3582d569c8745DaCD746274AEe"
-add["D3M_ORACLE"] = "0x0e2bf18273c953B54FE0a9dEC5429E67851D9468"
-add["D3M_CDAI"] = "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643"
-add["D3M_COMPTROLLER"] = "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
-add["D3M_COMP"] = "0xc00e94Cb662C3520282E6f5717214004A7f26888"
-add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
-add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
+// //  d3m comp ILK = "DIRECT-COMPV2-DAI";
+// add["D3M_HUB"] = "0x12F36cdEA3A28C35aC8C6Cc71D9265c17C74A27F"
+// add["D3M_MOM"] = "0x1AB3145E281c01a1597c8c62F9f060E8e3E02fAB"
+// add["D3M_MOM_LEGACY"] = add["DIRECT_MOM_LEGACY"]
+// add["D3M_COMPOUND_POOL"] = "0x621fE4Fde2617ea8FFadE08D0FF5A862aD287EC2"
+// add["D3M_COMPOUND_PLAN"] = "0xD0eA20f9f9e64A3582d569c8745DaCD746274AEe"
+// add["D3M_ORACLE"] = "0x0e2bf18273c953B54FE0a9dEC5429E67851D9468"
+// add["D3M_CDAI"] = "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643"
+// add["D3M_COMPTROLLER"] = "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
+// add["D3M_COMP"] = "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+// add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
+// add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
 
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
@@ -192,94 +192,108 @@ const build = (address, name) => {
 }
 
 const multi = build(add.MULTICALL, "Multicall")
-const ilkRegistry = build(add.ILK_REGISTRY, "IlkRegistry")
-const vat = build(add.MCD_VAT, "Vat")
-const pot = build(add.MCD_POT, "Pot")
-const jug = build(add.MCD_JUG, "Jug")
-const vow = build(add.MCD_VOW, "Vow")
-const pit = build(add.GEM_PIT, "GemPit")
-const cat = build(add.MCD_CAT, "Cat")
-const dog = build(add.MCD_DOG, "Dog")
-const spot = build(add.MCD_SPOT, "Spotter")
-const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
-const flash = build(add.MCD_FLASH, "DssFlash")
-const pause = build(add.MCD_PAUSE, "DSPause")
-const chief = build(add.CHIEF, "DSChief")
-const esm = build(add.MCD_ESM, "ESM")
-const end = build(add.MCD_END, "End")
-const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
-const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
-const vestMkrTreasury = build(add.MCD_VEST_MKR_TREASURY, "DssVestTransferrable")
+// const ilkRegistry = build(add.ILK_REGISTRY, "IlkRegistry")
+const gebCoinJoin = build(add.GEB_COIN_JOIN, "CoinJoin")
+// const vat = build(add.MCD_VAT, "Vat")
+const safeEngine = build(add.GEB_SAFE_ENGINE, "SAFEEngine")
+// const pot = build(add.MCD_POT, "Pot") Not found
+const coinSavingAccount = build(add.GEB_AC)
+// const jug = build(add.MCD_JUG, "Jug")
+const taxCollector = build(add.GEB_TAX_COLLECTOR, "TaxCollector")
+// const vow = build(add.MCD_VOW, "Vow")
+const accountEngine = build(add.GEB_ACCOUNTING_ENGINE, "AccountEngine")
+// const pit = build(add.GEM_PIT, "GemPit") Not found
+// const cat = build(add.MCD_CAT, "Cat")
+const liquidationEngine = build(add.GEB_LIQUIDATION_ENGINE, "LiquidationEngine")
+// const dog = build(add.MCD_DOG, "Dog") Not found
+// const spot = build(add.MCD_SPOT, "Spotter") Not found
+// const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine") Not found
+// const flash = build(add.MCD_FLASH, "DssFlash") Not found
+const pause = build(add.GEB_PAUSE, "DSPause")
+// const chief = build(add.CHIEF, "DSChief") Not found
+// const esm = build(add.MCD_ESM, "ESM") Not found
+// const end = build(add.MCD_END, "End")
+const globalSettlement = build(add.GEB_GLOBAL_SETTLEMENT, "GlobalSettlement")
+// const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
+// const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
+// const vestMkrTreasury = build(add.MCD_VEST_MKR_TREASURY, "DssVestTransferrable")
 const weth = build(add.ETH, "ERC20")
-const bat = build(add.BAT, "ERC20")
-const usdc = build(add.USDC, "ERC20")
-const tusd = build(add.TUSD, "ERC20")
-const wbtc = build(add.WBTC, "ERC20")
-const knc = build(add.KNC, "ERC20")
-const zrx = build(add.ZRX, "ERC20")
-const mana = build(add.MANA, "ERC20")
-const pax = build(add.PAXUSD, "ERC20")
-const usdt = build(add.USDT, "ERC20")
-const comp = build(add.COMP, "ERC20")
-const lrc = build(add.LRC, "ERC20")
-const link = build(add.LINK, "ERC20")
-const bal = build(add.BAL, "ERC20")
-const yfi = build(add.YFI, "ERC20")
-const gusd = build(add.GUSD, "ERC20")
-const uni = build(add.UNI, "ERC20")
-const renbtc = build(add.RENBTC, "ERC20")
-const aave = build(add.AAVE, "ERC20")
-const univ2daieth = build(add.UNIV2DAIETH, "ERC20")
-const univ2wbtceth = build(add.UNIV2WBTCETH, "ERC20")
-const univ2usdceth = build(add.UNIV2USDCETH, "ERC20")
-const univ2daiusdc = build(add.UNIV2DAIUSDC, "ERC20")
-const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
-const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
-const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
-const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
-const guniv3daiusdc1 = build(add.GUNIV3DAIUSDC1, "ERC20")
-const guniv3daiusdc2 = build(add.GUNIV3DAIUSDC2, "ERC20")
-const rwa001 = build(add.RWA001, "ERC20")
-const rwa002 = build(add.RWA002, "ERC20")
-const rwa003 = build(add.RWA003, "ERC20")
-const rwa004 = build(add.RWA004, "ERC20")
-const rwa005 = build(add.RWA005, "ERC20")
-const rwa006 = build(add.RWA006, "ERC20")
-const rwa007 = build(add.RWA007, "ERC20")
-const rwa008 = build(add.RWA008, "ERC20")
-const rwa009 = build(add.RWA009, "ERC20")
-const rwa010 = build(add.RWA010, "ERC20")
-const rwa011 = build(add.RWA011, "ERC20")
-const rwa012 = build(add.RWA012, "ERC20")
-const rwa013 = build(add.RWA013, "ERC20")
-const rwa014 = build(add.RWA014, "ERC20")
-const rwa015 = build(add.RWA015, "ERC20")
-const bkr = build(add.BKR, "ERC20")
-const matic = build(add.MATIC, "ERC20")
-const wsteth = build(add.WSTETH, "ERC20")
-const adai = build(add.ADAI, "ERC20")
+const wseth = build(add.WSTETH, "ERC20")
 const reth = build(add.RETH, "ERC20")
-const gno = build(add.GNO, "ERC20")
-const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
-const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
-const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
-const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
-const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
-const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
-const dai = build(add.MCD_DAI, "Dai")
-const mkr = build(add.MCD_GOV, "DSToken")
-const chai = build(add.CHAI, "Chai")
-const manager = build(add.CDP_MANAGER, "DssCdpManager")
-const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
+const cbeth = build(add.CBETH, "ERC20")
+const rai = build(add.RAI, "ERC20")
+const usdc = build(add.USDC, "ERC20")
+const tai = build(add.GEB_COIN, "Coin")
+// const bat = build(add.BAT, "ERC20")
+// const tusd = build(add.TUSD, "ERC20")
+// const wbtc = build(add.WBTC, "ERC20")
+// const knc = build(add.KNC, "ERC20")
+// const zrx = build(add.ZRX, "ERC20")
+// const mana = build(add.MANA, "ERC20")
+// const pax = build(add.PAXUSD, "ERC20")
+// const usdt = build(add.USDT, "ERC20")
+// const comp = build(add.COMP, "ERC20")
+// const lrc = build(add.LRC, "ERC20")
+// const link = build(add.LINK, "ERC20")
+// const bal = build(add.BAL, "ERC20")
+// const yfi = build(add.YFI, "ERC20")
+// const gusd = build(add.GUSD, "ERC20")
+// const uni = build(add.UNI, "ERC20")
+// const renbtc = build(add.RENBTC, "ERC20")
+// const aave = build(add.AAVE, "ERC20")
+// const univ2daieth = build(add.UNIV2DAIETH, "ERC20")
+// const univ2wbtceth = build(add.UNIV2WBTCETH, "ERC20")
+// const univ2usdceth = build(add.UNIV2USDCETH, "ERC20")
+// const univ2daiusdc = build(add.UNIV2DAIUSDC, "ERC20")
+// const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
+// const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
+// const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
+// const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
+// const guniv3daiusdc1 = build(add.GUNIV3DAIUSDC1, "ERC20")
+// const guniv3daiusdc2 = build(add.GUNIV3DAIUSDC2, "ERC20")
+// const rwa001 = build(add.RWA001, "ERC20")
+// const rwa002 = build(add.RWA002, "ERC20")
+// const rwa003 = build(add.RWA003, "ERC20")
+// const rwa004 = build(add.RWA004, "ERC20")
+// const rwa005 = build(add.RWA005, "ERC20")
+// const rwa006 = build(add.RWA006, "ERC20")
+// const rwa007 = build(add.RWA007, "ERC20")
+// const rwa008 = build(add.RWA008, "ERC20")
+// const rwa009 = build(add.RWA009, "ERC20")
+// const rwa010 = build(add.RWA010, "ERC20")
+// const rwa011 = build(add.RWA011, "ERC20")
+// const rwa012 = build(add.RWA012, "ERC20")
+// const rwa013 = build(add.RWA013, "ERC20")
+// const rwa014 = build(add.RWA014, "ERC20")
+// const rwa015 = build(add.RWA015, "ERC20")
+// const bkr = build(add.BKR, "ERC20")
+// const matic = build(add.MATIC, "ERC20")
+// const wsteth = build(add.WSTETH, "ERC20")
+// const adai = build(add.ADAI, "ERC20")
+// const reth = build(add.RETH, "ERC20")
+// const gno = build(add.GNO, "ERC20")
+// const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
+// const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
+// const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
+// const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
+// const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
+// const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
+
+// const mkr = build(add.MCD_GOV, "DSToken")
+// const chai = build(add.CHAI, "Chai")
+// const manager = build(add.CDP_MANAGER, "DssCdpManager")
+// const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
+
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
-const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
-const calcLinear = build(add.MCD_CLIP_CALC_TUSD_A, "LinearDecrease")
-const flap = build(add.MCD_FLAP, "Flapper")
-const flop = build(add.MCD_FLOP, "Flopper")
-const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
-const aaveIncentive = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, "StakedTokenIncentivesController")
+// const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
+// const calcLinear = build(add.MCD_CLIP_CALC_TUSD_A, "LinearDecrease")
+// const flap = build(add.MCD_FLAP, "Flapper")
+// const flop = build(add.MCD_FLOP, "Flopper")
+// const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
+// const aaveIncentive = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, "StakedTokenIncentivesController")
 //const d3mCdai = build(add.DIRECT_AAVEV2_DAI,  "CErc20Delegator")
-const d3mCompoundPool = build(add.D3M_COMPOUND_POOL, "D3MCompoundPool")
+// const d3mCompoundPool = build(add.D3M_COMPOUND_POOL, "D3MCompoundPool")
+
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
@@ -287,72 +301,81 @@ const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwaPip = build(add.PIP_RWA001, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
+
 const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
 const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
 const adaiPip = build(add.PIP_ADAI, "DSValue")
 const lerp = build(add.LERP_HUMP, "Lerp")
-const ethAIlkBytes = utils.formatBytes32String("ETH-A")
-const ethBIlkBytes = utils.formatBytes32String("ETH-B")
-const ethCIlkBytes = utils.formatBytes32String("ETH-C")
-const batIlkBytes = utils.formatBytes32String("BAT-A")
-const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
-const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
-const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
-const wbtcAIlkBytes = utils.formatBytes32String("WBTC-A")
-const wbtcBIlkBytes = utils.formatBytes32String("WBTC-B")
-const wbtcCIlkBytes = utils.formatBytes32String("WBTC-C")
-const kncAIlkBytes = utils.formatBytes32String("KNC-A")
-const zrxAIlkBytes = utils.formatBytes32String("ZRX-A")
-const manaAIlkBytes = utils.formatBytes32String("MANA-A")
-const paxAIlkBytes = utils.formatBytes32String("PAXUSD-A")
-const usdtAIlkBytes = utils.formatBytes32String("USDT-A")
-const compAIlkBytes = utils.formatBytes32String("COMP-A")
-const lrcAIlkBytes = utils.formatBytes32String("LRC-A")
-const linkAIlkBytes = utils.formatBytes32String("LINK-A")
-const balAIlkBytes = utils.formatBytes32String("BAL-A")
-const yfiAIlkBytes = utils.formatBytes32String("YFI-A")
-const gusdAIlkBytes = utils.formatBytes32String("GUSD-A")
-const uniAIlkBytes = utils.formatBytes32String("UNI-A")
-const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A")
-const aaveAIlkBytes = utils.formatBytes32String("AAVE-A")
-const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A")
-const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A")
-const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
-const psmgusdAIlkBytes = utils.formatBytes32String("PSM-GUSD-A")
-const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
-const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
-const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
-const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
-const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
-const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
-const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
-const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
-const guniv3daiusdc2AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC2-A")
-const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
-const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
-const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
-const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
-const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
-const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
-const rwa007AIlkBytes = utils.formatBytes32String("RWA007-A")
-const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
-const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
-const rwa010AIlkBytes = utils.formatBytes32String("RWA010-A")
-const rwa011AIlkBytes = utils.formatBytes32String("RWA011-A")
-const rwa012AIlkBytes = utils.formatBytes32String("RWA012-A")
-const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
-const rwa014AIlkBytes = utils.formatBytes32String("RWA014-A")
-const rwa015AIlkBytes = utils.formatBytes32String("RWA015-A")
-const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
-const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
-const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
-const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
-const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
-const rethAIlkBytes = utils.formatBytes32String("RETH-A")
-const gnoAIlkBytes = utils.formatBytes32String("GNO-A")
-const teleportAIlkBytes = utils.formatBytes32String("TELEPORT-FW-A")
-const d3mcdaiIlkBytes = utils.formatBytes32String("DIRECT-COMPV2-DAI")
+
+const ethABytes = utils.formatBytes32String("ETH-A")
+const ethBBytes = utils.formatBytes32String("ETH-B")
+const ethCBytes = utils.formatBytes32String("ETH-C")
+const wsEthABytes = utils.formatBytes32String("WSETH-A")
+const wsEthBBytes = utils.formatBytes32String("WSETH-B")
+const rEthABytes = utils.formatBytes32String("RETH-A")
+const rEthBBytes = utils.formatBytes32String("RETH-B")
+const cbEthABytes = utils.formatBytes32String("CBETH-A")
+const cbEthBBytes = utils.formatBytes32String("CBETH-B")
+const raiABytes = utils.formatBytes32String("RAI-A")
+// const batIlkBytes = utils.formatBytes32String("BAT-A")
+// const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
+// const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
+// const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
+// const wbtcAIlkBytes = utils.formatBytes32String("WBTC-A")
+// const wbtcBIlkBytes = utils.formatBytes32String("WBTC-B")
+// const wbtcCIlkBytes = utils.formatBytes32String("WBTC-C")
+// const kncAIlkBytes = utils.formatBytes32String("KNC-A")
+// const zrxAIlkBytes = utils.formatBytes32String("ZRX-A")
+// const manaAIlkBytes = utils.formatBytes32String("MANA-A")
+// const paxAIlkBytes = utils.formatBytes32String("PAXUSD-A")
+// const usdtAIlkBytes = utils.formatBytes32String("USDT-A")
+// const compAIlkBytes = utils.formatBytes32String("COMP-A")
+// const lrcAIlkBytes = utils.formatBytes32String("LRC-A")
+// const linkAIlkBytes = utils.formatBytes32String("LINK-A")
+// const balAIlkBytes = utils.formatBytes32String("BAL-A")
+// const yfiAIlkBytes = utils.formatBytes32String("YFI-A")
+// const gusdAIlkBytes = utils.formatBytes32String("GUSD-A")
+// const uniAIlkBytes = utils.formatBytes32String("UNI-A")
+// const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A")
+// const aaveAIlkBytes = utils.formatBytes32String("AAVE-A")
+// const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A")
+// const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A")
+// const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
+// const psmgusdAIlkBytes = utils.formatBytes32String("PSM-GUSD-A")
+// const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
+// const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
+// const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
+// const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
+// const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
+// const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
+// const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
+// const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
+// const guniv3daiusdc2AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC2-A")
+// const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
+// const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
+// const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
+// const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
+// const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
+// const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
+// const rwa007AIlkBytes = utils.formatBytes32String("RWA007-A")
+// const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
+// const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
+// const rwa010AIlkBytes = utils.formatBytes32String("RWA010-A")
+// const rwa011AIlkBytes = utils.formatBytes32String("RWA011-A")
+// const rwa012AIlkBytes = utils.formatBytes32String("RWA012-A")
+// const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
+// const rwa014AIlkBytes = utils.formatBytes32String("RWA014-A")
+// const rwa015AIlkBytes = utils.formatBytes32String("RWA015-A")
+// const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
+// const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
+// const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
+// const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
+// const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
+// const rethAIlkBytes = utils.formatBytes32String("RETH-A")
+// const gnoAIlkBytes = utils.formatBytes32String("GNO-A")
+// const teleportAIlkBytes = utils.formatBytes32String("TELEPORT-FW-A")
+// const d3mcdaiIlkBytes = utils.formatBytes32String("DIRECT-COMPV2-DAI")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -381,8 +404,13 @@ const VEST_DAI_LEGACY_IDS = 37
 const VEST_DAI_IDS = 16
 const VEST_MKR_TREASURY_IDS = 39
 
+// const subgraphClient = new GraphQLClient(
+//   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
+//   { mode: "cors" }
+// )
+
 const subgraphClient = new GraphQLClient(
-  "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
+  "https://subgraph.tai.money/subgraphs/name/tai",
   { mode: "cors" }
 )
 
@@ -491,9 +519,9 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
-      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('assetBalance', [])],
-      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxDeposit', [])],
-      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxWithdraw', [])],
+      // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('assetBalance', [])],
+      // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxDeposit', [])],
+      // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxWithdraw', [])],
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
@@ -714,9 +742,9 @@ class App extends Component {
     const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
     const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
     const lerpHumpDuration = lerp.interface.decodeFunctionResult('duration', res[offset++])[0]
-    const d3mCompBalance = d3mCompoundPool.interface.decodeFunctionResult('assetBalance', res[offset++])[0]
-    const d3mCompMaxDeposit = d3mCompoundPool.interface.decodeFunctionResult('maxDeposit', res[offset++])[0]
-    const d3mCompMaxWithdraw = d3mCompoundPool.interface.decodeFunctionResult('maxWithdraw', res[offset++])[0]
+    // const d3mCompBalance = d3mCompoundPool.interface.decodeFunctionResult('assetBalance', res[offset++])[0]
+    // const d3mCompMaxDeposit = d3mCompoundPool.interface.decodeFunctionResult('maxDeposit', res[offset++])[0]
+    // const d3mCompMaxWithdraw = d3mCompoundPool.interface.decodeFunctionResult('maxWithdraw', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -886,9 +914,9 @@ class App extends Component {
         lerpHumpDuration: lerpHumpDuration,
         lerpHumpCurrent: utils.formatUnits(lerpHumpCurrent, 45),
         lerpHumpAdjustment: utils.formatUnits(lerpHumpCurrent.sub(surplusBuffer), 45),
-        d3mCompBalance: utils.formatUnits(d3mCompBalance, 18),
-        d3mCompMaxDeposit: utils.formatUnits(d3mCompMaxDeposit, 18),
-        d3mCompMaxWithdraw: utils.formatUnits(d3mCompMaxWithdraw, 18),
+        d3mCompBalance: '1000000000000000000', //utils.formatUnits(d3mCompBalance, 18),
+        d3mCompMaxDeposit: '1000000000000000000', //utils.formatUnits(d3mCompMaxDeposit, 18),
+        d3mCompMaxWithdraw: '1000000000000000000', //utils.formatUnits(d3mCompMaxWithdraw, 18),
         historicalDebt,
       }
     })
@@ -1358,7 +1386,7 @@ class App extends Component {
             Welcome BlockTower Andromeda!
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
-              <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
+              {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Français</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('it')}>Italiano</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('de')}>Deutsch</button>
@@ -1373,7 +1401,7 @@ class App extends Component {
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('fa')}>فارسی</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('uk')}>Українська</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('kr')}>한국어</button>
-              <button className="button is-small is-rounded" onClick={() => this.props.toggle('af')}>Afrikaans</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('af')}>Afrikaans</button> */}
               {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
             </div>
           </div>

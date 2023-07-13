@@ -75,7 +75,8 @@ const Main = (props) => {
   // hack till Main component is broken into component per section
   const location = useLocation();
   const history = useHistory();
-  const indexToTab = ['/overview', '/collateral', '/oracles', '/auctions', '/ecosystem', '/addresses', '/vesting']
+  // const indexToTab = ['/overview', '/collateral', '/oracles', '/auctions', '/ecosystem', '/addresses', '/vesting']
+  const indexToTab = ['/overview']
   function tabNameToIndex() {
     let i = indexToTab.indexOf(location.pathname)
     return (i >= 0 ? i : 0)
@@ -87,12 +88,12 @@ const Main = (props) => {
         <Tabs defaultIndex={tabNameToIndex()} onSelect={index => history.push(indexToTab[index])}>
           <TabList>
             <Tab><p className="is-size-5">Overview</p></Tab>
-            <Tab><p className="is-size-5">Collateral</p></Tab>
+            {/* <Tab><p className="is-size-5">Collateral</p></Tab>
             <Tab><p className="is-size-5">Oracles</p></Tab>
             <Tab><p className="is-size-5">Auctions</p></Tab>
             <Tab><p className="is-size-5">Ecosystem</p></Tab>
             <Tab><p className="is-size-5">Addresses</p></Tab>
-            <Tab><p className="is-size-5">Vesting</p></Tab>
+            <Tab><p className="is-size-5">Vesting</p></Tab> */}
           </TabList>
 
           <TabPanel>
