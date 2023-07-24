@@ -197,7 +197,6 @@ const gebCoinJoin = build(add.GEB_COIN_JOIN, "CoinJoin")
 // const vat = build(add.MCD_VAT, "Vat")
 const safeEngine = build(add.GEB_SAFE_ENGINE, "SAFEEngine")
 // const pot = build(add.MCD_POT, "Pot") Not found
-const coinSavingAccount = build(add.GEB_AC)
 // const jug = build(add.MCD_JUG, "Jug")
 const taxCollector = build(add.GEB_TAX_COLLECTOR, "TaxCollector")
 // const vow = build(add.MCD_VOW, "Vow")
@@ -280,6 +279,7 @@ const tai = build(add.GEB_COIN, "Coin")
 // const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
 
 // const mkr = build(add.MCD_GOV, "DSToken")
+const rate = build(add.GEB_GOV_TOKEN, "DSDelegateToken")
 // const chai = build(add.CHAI, "Chai")
 // const manager = build(add.CDP_MANAGER, "DssCdpManager")
 // const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
@@ -294,19 +294,19 @@ const tai = build(add.GEB_COIN, "Coin")
 //const d3mCdai = build(add.DIRECT_AAVEV2_DAI,  "CErc20Delegator")
 // const d3mCompoundPool = build(add.D3M_COMPOUND_POOL, "D3MCompoundPool")
 
-const usdcPip = build(add.PIP_USDC, "DSValue")
-const tusdPip = build(add.PIP_TUSD, "DSValue")
-const paxPip = build(add.PIP_PAXUSD, "DSValue")
-const usdtPip = build(add.PIP_USDT, "DSValue")
-const gusdPip = build(add.PIP_GUSD, "DSValue")
-const rwaPip = build(add.PIP_RWA001, "DSValue")
-const pip = build(add.PIP_ETH, "OSM")
+// const usdcPip = build(add.PIP_USDC, "DSValue")
+// const tusdPip = build(add.PIP_TUSD, "DSValue")
+// const paxPip = build(add.PIP_PAXUSD, "DSValue")
+// const usdtPip = build(add.PIP_USDT, "DSValue")
+// const gusdPip = build(add.PIP_GUSD, "DSValue")
+// const rwaPip = build(add.PIP_RWA001, "DSValue")
+// const pip = build(add.PIP_ETH, "OSM") // ?
 
-const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
-const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
-const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
-const adaiPip = build(add.PIP_ADAI, "DSValue")
-const lerp = build(add.LERP_HUMP, "Lerp")
+// const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
+// const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
+// const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
+// const adaiPip = build(add.PIP_ADAI, "DSValue")
+// const lerp = build(add.LERP_HUMP, "Lerp")
 
 const ethABytes = utils.formatBytes32String("ETH-A")
 const ethBBytes = utils.formatBytes32String("ETH-B")
@@ -378,16 +378,20 @@ const raiABytes = utils.formatBytes32String("RAI-A")
 // const d3mcdaiIlkBytes = utils.formatBytes32String("DIRECT-COMPV2-DAI")
 window.utils = utils
 window.add = add
-window.vat = vat
-window.vow = vow
-window.pit = pit
-window.cat = cat
-window.chai = chai
-window.mkr = mkr
-window.pot = pot
-window.jug = jug
+window.safeEngine = safeEngine
+window.accountEngine = accountEngine
+// window.pit = pit -- no exist
+// window.cat = cat
+window.liquidationEngine = liquidationEngine
+// window.chai = chai -- no exist
+// window.mkr = mkr
+window.rate = rate
+// window.pot = pot -- no exist
+// window.jug = jug
+window.taxCollector = taxCollector
 window.multi = multi
-window.dai = dai
+// window.dai = dai
+window.tai = tai
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
 const WAD = ethers.BigNumber.from("1000000000000000000")
@@ -448,25 +452,26 @@ class App extends Component {
   all = async (blockNumber) => {
     let p1 = multi.callStatic.aggregate([
       [add.MULTICALL, multi.interface.encodeFunctionData('getCurrentBlockTimestamp', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('Line', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('wait', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
+      [add.GEB_SAFE_ENGINE, safeEngine.interface.encodeFunctionData('globalDebtCeiling', [])],
+      [add.GEB_SAFE_ENGINE, safeEngine.interface.encodeFunctionData('globalDebt', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('surplusBuffer', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('debtAuctionBidSize', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('totalQueuedDebt', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('totalOnAuctionDebt', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('surplusAuctionAmountToSell', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('initialDebtAuctionMintedTokens', [])],
+      [add.GEB_ACCOUNTING_ENGINE, accountEngine.interface.encodeFunctionData('popDebtDelay', [])],
+      [add.GEB_SAFE_ENGINE, safeEngine.interface.encodeFunctionData('coinBalance', [add.GEB_ACCOUNTING_ENGINE])],
+      [add.GEB_SAFE_ENGINE, safeEngine.interface.encodeFunctionData('debtBalance', [add.GEB_ACCOUNTING_ENGINE])],
+      [add.GEB_COIN, tai.interface.encodeFunctionData('totalSupply', [])],
 
-      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_DAI])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.STARKNET_DAI_ESCROW])],
+      // [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
+      [add.GEB_GOV_TOKEN, rate.interface.encodeFunctionData('balanceOf', [])],
+      // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_DAI])],
+      // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
+      // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
+      // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])],
+      // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.STARKNET_DAI_ESCROW])],
 
       [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('chi', [])],
