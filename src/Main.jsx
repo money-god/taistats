@@ -62,7 +62,7 @@ const formatEightDp = new Intl.NumberFormat('en-US', {
 
 const Main = (props) => {
   const t = useTranslate()
-  document.title = `${formatNoDecimals.format(props.debt)} - Dai Stats`
+  document.title = `${formatNoDecimals.format(props.debt)} - Tai Stats`
   const sysCollat = props.sysLocked / props.debt
 
   const nextFlap = () =>

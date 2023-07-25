@@ -171,7 +171,6 @@ const add = require('./addresses-tai.json')
 // add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
 // add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
 
-
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -282,6 +281,7 @@ const tai = build(add.GEB_COIN, "Coin")
 const rate = build(add.GEB_GOV_TOKEN, "DSDelegateToken")
 // const chai = build(add.CHAI, "Chai")
 // const manager = build(add.CDP_MANAGER, "DssCdpManager")
+const manager = build(add.SAFE_MANAGER, "SafeManager")
 // const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
 
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
@@ -467,48 +467,56 @@ class App extends Component {
 
       // [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
       [add.GEB_GOV_TOKEN, rate.interface.encodeFunctionData('balanceOf', [])],
+
       // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_DAI])],
       // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
       // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
       // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])],
       // [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.STARKNET_DAI_ESCROW])],
 
-      [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])],
-      [add.MCD_POT, pot.interface.encodeFunctionData('chi', [])],
-      [add.MCD_POT, pot.interface.encodeFunctionData('rho', [])],
-      [add.CDP_MANAGER, manager.interface.encodeFunctionData('cdpi', [])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
+      // not found
+      // [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])],
+      // [add.MCD_POT, pot.interface.encodeFunctionData('chi', [])],
+      // [add.MCD_POT, pot.interface.encodeFunctionData('rho', [])],
 
-      [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
-      [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_GOV, mkr.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
+      [add.CDP_MANAGER, manager.interface.encodeFunctionData('safei', [])],
+      // [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
+      [add.GEB_TAX_COLLECTOR, taxCollector.interface.encodeFunctionData('globalStabilityFee', [])],
 
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('beg', [])],
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('ttl', [])],
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('tau', [])],
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('lid', [])],
-      [add.MCD_FLAP, flap.interface.encodeFunctionData('fill', [])],
-      [add.MCD_FLOP, flop.interface.encodeFunctionData('beg', [])],
-      [add.MCD_FLOP, flop.interface.encodeFunctionData('pad', [])],
-      [add.MCD_FLOP, flop.interface.encodeFunctionData('ttl', [])],
-      [add.MCD_FLOP, flop.interface.encodeFunctionData('tau', [])],
-      [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
+      // [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])], not found
+      // [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])], not found
 
-      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
-      [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])],
-      [add.MCD_DOG, dog.interface.encodeFunctionData('Hole', [])],
-      [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])],
+      // [add.MCD_GOV, mkr.interface.encodeFunctionData('totalSupply', [])],
+      [add.GEB_GOV_TOKEN, rate.interface.encodeFunctionData('totalSupply', [])],
+      // [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
+      [add.GEB_SAFE_ENGINE, safeEngine.interface.encodeFunctionData('globalUnbackedDebt', [])],
 
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])], // or use EIP 3156 maxFlashLoan(token)
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('beg', [])],
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('ttl', [])],
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('tau', [])],
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('lid', [])],
+      // [add.MCD_FLAP, flap.interface.encodeFunctionData('fill', [])],
+      // [add.MCD_FLOP, flop.interface.encodeFunctionData('beg', [])],
+      // [add.MCD_FLOP, flop.interface.encodeFunctionData('pad', [])],
+      // [add.MCD_FLOP, flop.interface.encodeFunctionData('ttl', [])],
+      // [add.MCD_FLOP, flop.interface.encodeFunctionData('tau', [])],
+      // [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
+
+      [add.GEB_GOV_TOKEN, rate.interface.encodeFunctionData('balanceOf', [add.GEB_PAUSE_PROXY])],
+      // [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])], not found
+      // [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])], not found
+      // [add.MCD_DOG, dog.interface.encodeFunctionData('Hole', [])],
+      // [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])],
+
+      // [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])], // or use EIP 3156 maxFlashLoan(token)
       // flash toll hardwired to 0
-      [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
-      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
-      [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
-      [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
-      [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
+      [add.GEB_PAUSE, pause.interface.encodeFunctionData('delay', [])],
+
+      // [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
+      // [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
+      // [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
+      // [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME show  end live, when, debt
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
       //[add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('27500000000000000000000000')])],
@@ -516,14 +524,14 @@ class App extends Component {
       //[add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       //[add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
       // FIXME shoud be erc20 for token not adai? Is a interface for each gem required?
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
+      // [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
+      // [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
+      // [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
       //[add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
       // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('assetBalance', [])],
       // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxDeposit', [])],
       // [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxWithdraw', [])],
@@ -531,7 +539,7 @@ class App extends Component {
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
-     .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
+     .concat(this.getIlkCall(ethABytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
      .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
      .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
@@ -673,7 +681,7 @@ class App extends Component {
 
     const timestamp = multi.interface.decodeFunctionResult('getCurrentBlockTimestamp', res[offset++])
     const line = res[offset++] // vat.interface.decodeFunctionResult('Line', res[0])
-    const debt = res[offset++] //vat.interface.decodeFunctionResult('debt', res[1])
+    const debt = safeEngine.interface.decodeFunctionResult('debt', res[1])
     const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[offset++])[0]
     const debtSize = vow.interface.decodeFunctionResult('sump', res[offset++])[0]
     const sin = vow.interface.decodeFunctionResult('Sin', res[offset++])[0]
@@ -927,11 +935,11 @@ class App extends Component {
     })
   }
 
-  getIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
+  getIlkCall = (collateralBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
     var pipCall, lockedCall, calcCall1, calcCall2;
-    const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
-    const clipAdd = add['MCD_CLIP_' + ilkSuffix]
-    const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
+    const gemJoinAdd = add['GEB_JOIN_' + collateralBytes]
+    // const clipAdd = add['MCD_CLIP_' + ilkSuffix]
+    // const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
     // use pip.zzz or pip.read depending if dsvalue or osm
     if ([usdc, tusd, pax, gusd, adai].includes(gem)) {
         pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
@@ -1411,9 +1419,9 @@ class App extends Component {
             </div>
           </div>
           <Switch>
-            <Route path="/dai">
+            {/* <Route path="/dai">
               <Dai {...this.state} {...add} />
-            </Route>
+            </Route> */}
             <Route path="/">
               <Main {...this.state} {...add} togglePause={this.togglePause} />
             </Route>
